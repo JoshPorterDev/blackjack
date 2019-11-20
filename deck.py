@@ -1,7 +1,7 @@
 import random
 from card import Card
 
-suits = ['spades', 'clubs', 'diamonds', 'hearts']
+suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts']
 values = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king']
 
 numericValues = {'ace': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'jack': 10, 'queen': 10, 'king': 10}

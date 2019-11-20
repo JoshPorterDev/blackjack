@@ -14,3 +14,8 @@ class Card:
 
     def getNumericValue(self):
         return numericValues[self.rank]
+
+    def test(self):
+        number = numericValues[self.rank]
+
+        return f"{self.suit} {number}"
