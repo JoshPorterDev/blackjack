@@ -20,14 +20,14 @@ class Blackjack:
         print(total)
 
         while choice != 'p' or total < 21:
-            choice = input("Hit, Pass, Or Double (h, p, d) ")
+            choice = input("\nHit, Pass, Or Double (h, p, d) ")
 
             if choice == 'h':
                 card = self.deck.drawCard()
                 cardValue = card.getNumericValue()
                 total += cardValue
                 print(f"You drew a {card}")
-                print(f"total is {total}")
+                print(f"Total is now: {total}")
 
                 if total == 21:
                     print("Perfect")
@@ -75,38 +75,49 @@ class Blackjack:
 
 
 
-    def test(self, playerScore, houseScore):
-        print(f"You scored a {playerScore}")
+    def test(self, playerScore, houseScore, wager):
+        print(f"\nYou scored a {playerScore}")
         print(f"House scored a {houseScore}")
 
         if playerScore > 21 and houseScore > 21:
             print("No one wins")
 
         elif playerScore <= 21 and houseScore > 21:
-            print("Player wins")
+            print("You win!")
+            self.playerBalance += wager
+            self.houseBalance -= wager
 
         elif playerScore > houseScore and playerScore <= 21:
-            print("\nYou win!")
+            print("You win!")
+            self.playerBalance += wager
+            self.houseBalance -= wager
 
         elif playerScore == houseScore:
             print("push")
 
         elif houseScore > playerScore and houseScore <= 21:
             print("House wins")
+            self.playerBalance -= wager
+            self.houseBalance += wager
+
+        print(f"You have ${self.playerBalance}")
+        print(f"House has ${self.houseBalance}")
 
     def playRound(self):
+        wager = int(input(f"How much would you like to wager? (10 - {self.playerBalance}) "))
         self.deck.shuffleDeck()
         playerHand = self.playHand()
         houseHand = self.houseHand()
-        self.test(playerHand, houseHand)
+        self.test(playerHand, houseHand, wager)
 
     def main(self):
         ans = input("Do you want to play blackjack? (y/n) ")
 
         while ans == 'y':
-            self.deck.shuffleDeck()
+            self.deck = Deck() # If the user wants to play another hand, we create a new, full deck to play with
+            self.deck.shuffleDeck() # Shuffle the new deck
             self.playRound()
-            ans = input("Do you want to play another hand? (y/n) ")
+            ans = input("\nDo you want to play another hand? (y/n) ")
 
         print("Thanks for playing")
         sys.exit()
