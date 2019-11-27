@@ -120,6 +120,7 @@ class Blackjack:
             ans = input("\nDo you want to play another hand? (y/n) ")
 
         print("Thanks for playing")
+        print(f"You took home ${self.playerBalance}")
         sys.exit()
 
 

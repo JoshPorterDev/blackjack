@@ -2,11 +2,11 @@ import pygame, sys
 from deck import Deck
 
 
+
 d = Deck()
 d.shuffleDeck()
 test_card = d.drawCard()
 card_img_id = test_card.test()
-
 
 
 pygame.init()
